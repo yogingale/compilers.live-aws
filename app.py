@@ -1,5 +1,5 @@
-from flask import Flask, render_template
-from flask import request, flash
+from flask import Flask
+from flask import request
 import os
 from flask_mail import Mail, Message
 
@@ -46,8 +46,14 @@ def contact_us():
     )
     mail.send(msg)
 
-    flash("Form submitted successfully!", "info")
-    return render_template("index.html")
+    return {
+        "headers": {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "https://www.compilers.live",
+        },
+        "statusCode": 200,
+        "message": "Success",
+    }
 
 
 if __name__ == "__main__":
