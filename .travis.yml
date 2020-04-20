@@ -1,16 +1,36 @@
+dist: xenial
 language: python
 python:
 - '3.8'
-install:
-- pip install -r requirements-dev.txt
-script:
-- flake8 .
-deploy:
-  provider: s3
-  access_key_id:
-    secure: H/Bqmk1kRLv7ZFFf5hGugR/eLMkmKQD44uwtl7jgUY2W35GAgiz2EJvGdTRlKgG0RZMenuRvRecB0cWmYuCdKpk1IkZKe+Bd+4q1zCpTf0HZPCAknrrSr5tRKwjdqMm7r1rHzl7WDX9wQvaLPIbPcuNJKsL5iw9QgPzMo1rOn10Wwk69Qk5plPjRKXlCkXt9x03A3nfu9CBgGo/RSv7SjEPC0K9VhPafbgigDpv0EqVIBEjIEYhceJC04Q/Yy+Oo8OXOn8NJO14xeYI3jpwMPJ3mDUW4TCBJfzyroBLCcxYLkxr/Ink66dEpFmw7+/F77e+CaS98TQbESB5u/R55Eq+dhUSAfba94eptzxgI+oXss/MjrnibISTmJeiwRhj2pfvt6whn2pNLgh9qKEzTDHbzsyz+srWE5HgHnKgaN0iHtA8o9D2zIEEw7N8OaWdDaKl6kDrWTOvS7QUUcjva0LQS+Ky8qb9ZTgXIj63a4fejQHX1UPWhYuv+AYTRlMLym5/ftr2AC7ud4hmHF8/yapkFmXGcRJtVUbVycSeJ/jhtdyobALAGVAfaVH1rX41780ygfGTEDS59yjHBPJ4XaYmeeCbt9x4Kh0qcAKtSDdVYcgPdrcoJQdXtzvQ+0sfDa5Vj8iR+V+v/xiERl35Fgd3yr59S6+19QIvOCld5EOI=
-  secret_access_key:
-    secure: E/GsXa+eJ9UNHuVN3zAN05XfhSo3b7uQnVsGn3427BTiN9w3KtjsfZty1DxGxJDuUF4mUF5fD+0oHOOJRnUgXFEK2egTJG9LkjtrJN1TUuBEjk8lUrVSdVwxIqSCT3ZAhTQlrCKoVPvC+UwxYrrOMU7fIZhegBJcH4azaZo29QK57C1OpAQSW3FxA0hHYleGNOsu0TJnhNJiZ6Z4IYBwdmvD3+yEZnda5vgaBvyEZrQ1KIqU6ikCH+gUitvAep/XFayeVmbdt3IoLljcXl/BvOoXUAtGHpzQp3WufYAV0jYCfk9ngfwx2SotJG2CWuViIEXpI3xpAFvJt4YI9Vpz8D8CPOOOrUyWAeULdoPgBvonVjQOTpatCQALvtpG+dqpu4+OMYHYBT/+azzAckpSeQ9fv6Rjbm6LaV6dE1Pozbpj4pc98x51HiZqhuNTIqn2hwAIpRqYyuWmXoZ+XnxaJqYNsFR/tvhupMrOyY3J9GsYiBQLRKPKyQBaX6Tgqnbwq3+hBWVBog5k0wYyOuMQ4JKAjT1TuAJfWvlPU6OenDTR9kkX8ercmF2Kg06srcXIEptIrROIh6nbahoH1wDf0B8vuvnN/YkOeWspEVrXiQl2IEPAMlTc1KDZrMmz39l9p4Z2fIakC1aGgCtH5zM87YyZeiN/9dqFFHZTVzGktm0=
-  bucket: www.compilers.live
-  skip_cleanup: true
-  region: us-east-1
+matrix:
+  include:
+  - install:
+    - pip install -r requirements-dev.txt
+    script:
+    - flake8 .
+    deploy:
+      provider: s3
+      access_key_id:
+        secure: H/Bqmk1kRLv7ZFFf5hGugR/eLMkmKQD44uwtl7jgUY2W35GAgiz2EJvGdTRlKgG0RZMenuRvRecB0cWmYuCdKpk1IkZKe+Bd+4q1zCpTf0HZPCAknrrSr5tRKwjdqMm7r1rHzl7WDX9wQvaLPIbPcuNJKsL5iw9QgPzMo1rOn10Wwk69Qk5plPjRKXlCkXt9x03A3nfu9CBgGo/RSv7SjEPC0K9VhPafbgigDpv0EqVIBEjIEYhceJC04Q/Yy+Oo8OXOn8NJO14xeYI3jpwMPJ3mDUW4TCBJfzyroBLCcxYLkxr/Ink66dEpFmw7+/F77e+CaS98TQbESB5u/R55Eq+dhUSAfba94eptzxgI+oXss/MjrnibISTmJeiwRhj2pfvt6whn2pNLgh9qKEzTDHbzsyz+srWE5HgHnKgaN0iHtA8o9D2zIEEw7N8OaWdDaKl6kDrWTOvS7QUUcjva0LQS+Ky8qb9ZTgXIj63a4fejQHX1UPWhYuv+AYTRlMLym5/ftr2AC7ud4hmHF8/yapkFmXGcRJtVUbVycSeJ/jhtdyobALAGVAfaVH1rX41780ygfGTEDS59yjHBPJ4XaYmeeCbt9x4Kh0qcAKtSDdVYcgPdrcoJQdXtzvQ+0sfDa5Vj8iR+V+v/xiERl35Fgd3yr59S6+19QIvOCld5EOI=
+      secret_access_key:
+        secure: E/GsXa+eJ9UNHuVN3zAN05XfhSo3b7uQnVsGn3427BTiN9w3KtjsfZty1DxGxJDuUF4mUF5fD+0oHOOJRnUgXFEK2egTJG9LkjtrJN1TUuBEjk8lUrVSdVwxIqSCT3ZAhTQlrCKoVPvC+UwxYrrOMU7fIZhegBJcH4azaZo29QK57C1OpAQSW3FxA0hHYleGNOsu0TJnhNJiZ6Z4IYBwdmvD3+yEZnda5vgaBvyEZrQ1KIqU6ikCH+gUitvAep/XFayeVmbdt3IoLljcXl/BvOoXUAtGHpzQp3WufYAV0jYCfk9ngfwx2SotJG2CWuViIEXpI3xpAFvJt4YI9Vpz8D8CPOOOrUyWAeULdoPgBvonVjQOTpatCQALvtpG+dqpu4+OMYHYBT/+azzAckpSeQ9fv6Rjbm6LaV6dE1Pozbpj4pc98x51HiZqhuNTIqn2hwAIpRqYyuWmXoZ+XnxaJqYNsFR/tvhupMrOyY3J9GsYiBQLRKPKyQBaX6Tgqnbwq3+hBWVBog5k0wYyOuMQ4JKAjT1TuAJfWvlPU6OenDTR9kkX8ercmF2Kg06srcXIEptIrROIh6nbahoH1wDf0B8vuvnN/YkOeWspEVrXiQl2IEPAMlTc1KDZrMmz39l9p4Z2fIakC1aGgCtH5zM87YyZeiN/9dqFFHZTVzGktm0=
+      bucket: www.compilers.live
+      skip_cleanup: true
+      region: us-east-1
+      upload-dir: static
+      file_glob: true
+      file: "*.html"
+  - language: node_js
+    node_js:
+    - node
+    cache:
+      directories:
+      - node_modules
+    env:
+      # AWS_ACCESS_KEY_ID
+      - secure: vYV/ymwgYhQpLSvQ2kpnX8o1eW2ZOKnfOWqPwZcaHWbFc36pylEaHIBCj/eihGMXfubdez/khhizq2dCUxKXhULjT5KesjpPvLysHwHDB/Kgvie2GaUR7CXPwYelEr1EqkDiHXXBgFmmCWYQ1x7gAazwOrK0HYDa+XRXobug7NnnEviMigFhjXTRFClyQghCBzg17enjhXSgIuejZNLrywzUIIv3sS535kctJcMdRNGDO8wS6TLxdVmH1HxjzCNEBPUP+46mVZF46PwNYtLFFzt4TzlBdmiJJQU/BO3UaiUv/A36djmKVUqceimrN9/SHibS2ZJV5UIun3zKN88Wg8zlwDKPhcDb84/0rnknxY/Y3L4rRxrZhDvN0uSXOFRGduTbYsVc64647gyaCI+d/KRG+EuJyI31AIpAJihlb75HL4AfI5yFr0z1kDLJslKSu5EBhJTLm/lbNGlo1RlZOEJ9GE2Vfr7zO8W0vMqBX28g80VRLWoYCOzwUxlqpM/VroFH63L/WDSdM+J7XJ+uoX6ddmjUS0V9/8psidnDpQo+R4n3lRclChp2LJgXbAK8AmEhvBLqQI9NMsVNltPkxpbwaLGC9wdBByuSgHB1512pw2170e/YNV1Pccu4daf3joqB8flzrTIl1/T0bDFRgr3CGrXkMLFUnPzWxHraaVo=
+      # AWS_SECRET_ACCESS_KEY
+      - secure: 0r2dssQPTgiQmOrVWj2Qb85yIWvfnWaGWJBZy9fmtPvWFTTuOUBIvBK6VYdIJojJEb/6svMExpCzVtaB5N1nrImf/jdU9o9clpgs9DdEgBXbchzi2+G3CpdUTsyVf0Mifwe5UP/LCOj4ED+eLIyIF9KzmUqaUYZMwV98kItO+8EQKD7SY0ZLSZhrpl5fOSTI9c8vT+xqMeMZRwKpibAFOj/19tKPC4N4xcTd5c3VU2mUvpCiRN8Z/8gP7rKwXmT0afjWL97FLFTfGGgAHDCmgJsdDGE5zm4CXJy9QZDmUtoKIaKBSbuqHqAdM5M18e9QOEXWRF1m2swpwuF0azZ5miYOuf6nkksJ2eeXIB1LH40VJAvezEs+fROfZoMvrHuEAZ0zhKyiI7/EcY02jv6EFFrbMkCTHhX6wavzqo4aPlT3/WC/U8wfp/AQoURKhJn02KvFIbCk/1eHE3TtKtw0V8e4JT/B1b+cB/+s+iHON7g2sSWVHV270uqJjeD9PKtUYLuPrpTWCrhnv4bC0Sl8vqdGs5IZ0Nhnw3aI8LhS+AXBUtz6wNQdyfDV+5Tad2PmHO8hzKEv9SEuN9u3MJ8MrhS0EF0P7zRwiL7k4AcBUi/tfEUu95A1UOmbDX4zX2AEiKdy8PAfpsolgOE/mh05XdMq5x1JqFgQRD4aQ0lDU3k=
+    script:
+    - npm install -g serverless
+    - serverless deploy -v
