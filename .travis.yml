@@ -18,7 +18,8 @@ matrix:
       skip_cleanup: true
       region: us-east-1
       upload-dir: static
-      glob: "*.html"
+      glob: *.html
+      
   - language: node_js
     node_js:
     - node
