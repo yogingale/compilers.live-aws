@@ -1,3 +1,5 @@
+dist: xenial
+language: python
 deploy:
   provider: s3
   access_key_id:
