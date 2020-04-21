@@ -1,5 +1,10 @@
-dist: xenial
 language: python
+python:
+- '3.8'
+install:
+- pip install -r requirements-dev.txt
+script:
+- flake8 .
 deploy:
   provider: s3
   access_key_id:
